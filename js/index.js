@@ -8,7 +8,7 @@
 	var P1R4 = echarts.init(document.getElementById('P1R4'));
 	var P1C1 = echarts.init(document.getElementById('P1C1'));
 	
-	//载入本页面初始数据
+	//载入本页面初始数据---------
 	$(document).ready(function(){
 		toggleFullScreen();
 		loadDataByYear('2018');
