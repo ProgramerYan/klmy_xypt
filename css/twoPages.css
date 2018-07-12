@@ -251,6 +251,10 @@ li.startM {
     color: #7a8e9f;
     font-size: .55rem;
 }
+.left-center-1 .title-text-1 {
+    color: white;
+    font-size: .55rem;
+}
 .left-center-1 .num-text {
     color: white;
     font-size: .7rem;
@@ -297,7 +301,7 @@ li.startM {
     float: left;
 }
 .text{
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     background-color: #032453;
     text-align: center;
 }
@@ -309,7 +313,7 @@ body{
     font-family: “Microsoft YaHei” ! important;
 }
 .text1{
-    font-size: 0.65rem;
+    font-size: 0.5rem;
     text-align: center;
 }
 .color{

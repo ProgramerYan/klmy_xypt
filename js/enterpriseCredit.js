@@ -12,11 +12,7 @@
 		    initChart();
 			loadDataByYear('2018');
 			load_SingleValues(singleValueDataSourceId,'2018');	
-			scrollTable('tbd');
-			scrollTable('tbd_1');
-			scrollTable('tbd_sgs');
-			scrollTable('tbd_sgs_xzcf');
-			scrollTable('tbd_qyyj');
+			//scrollTable('tbd_1');
 			}
 		);
 		//初始化所有图表
@@ -171,7 +167,7 @@
 					orient: 'vertical',
 					x: 'right',
 					y: 'center',
-					data:['开业','吊销','存续']
+					
 				},
 				series: [{
 					name:'',
@@ -342,7 +338,8 @@
 						normal: {
 
 							color: function (params) {
-								var colorList = ['#00669f', '#539132', '#2137b5', '#238b95', '#4b409f', '#0eb72f', '#0eb72f', '#0eb72f', '#0eb72f'];
+								var colorList = ['rgb(255,0,0)','rgb(255,128,0)','rgb(255,255,0)','rgb(0,255,0)','rgb(0,255,255)','rgb(0,0,255)','rgb(128,0,255)'];
+
 								return colorList[params.dataIndex];
 							}
 						},
@@ -654,6 +651,7 @@
 			var title=['企业名称','失信行为','失信次数'];
 			var titleid=['NAME','ACTION','DEGREE'];
 			var th;
+			var rowvalue=new Array();
 			$.each(title, function (index, value){
 				th+="<td>" +value+ "</td>";
 			 });
@@ -661,6 +659,15 @@
 			$("#SXQY_TABLE").append("<tbody id='tbd'></tbody>");
 			$.get(getJsonUrl(tableDataSourceID)).done(function (data) {	
 				for (var i=0;i<data.rows.length;i++){
+					var tr1='';
+					for(var j=0;j<title.length;j++){
+						var columnID=titleid[j];
+						var value=data.rows[i][columnID];
+						tr1+='<td>'+value+'</td>'
+					}
+					 rowvalue[i]='<tr>'+tr1+'</tr>';			
+				}
+				for (var i=0;i<3;i++){
 					var tr='';
 					for(var j=0;j<title.length;j++){
 						var columnID=titleid[j];
@@ -668,7 +675,8 @@
 						tr+='<td>'+value+'</td>'
 					}
 					 $("#tbd").append('<tr>'+tr+'</tr>');			
-				} 
+				}
+               scrollTable_2('tbd',data.rows.length,rowvalue,3);				
 			}); 
 		}
 		//加载评级信息表数据
@@ -678,6 +686,7 @@
 			var title=['企业名称','评价结果'];
 			var titleid=['NAME','DEGREE'];
 			var th;
+			var rowvalue=new Array();
 			$.each(title, function (index, value){
 				th+="<td>" +value+ "</td>";
 			 });
@@ -685,6 +694,15 @@
 			$("#PJXX_TABLE").append("<tbody id='tbd_1'></tbody>");
 			$.get(getJsonUrl(tableDataSourceID)).done(function (data) {	
 				for (var i=0;i<data.rows.length;i++){
+					var tr1='';
+					for(var j=0;j<title.length;j++){
+						var columnID=titleid[j];
+						var value=data.rows[i][columnID];
+						tr1+='<td>'+value+'</td>'
+					}
+					rowvalue[i]='<tr>'+tr1+'</tr>';		
+				}
+                for (var i=0;i<5;i++){
 					var tr='';
 					for(var j=0;j<title.length;j++){
 						var columnID=titleid[j];
@@ -692,7 +710,8 @@
 						tr+='<td>'+value+'</td>'
 					}
 					 $("#tbd_1").append('<tr>'+tr+'</tr>');			
-				} 
+				}
+                scrollTable_2('tbd_1',data.rows.length,rowvalue,5);				
 			}); 
 		}
 		//加载行政许可表数据
@@ -702,6 +721,7 @@
 			var title=['企业名称','许可日期'];
 			var titleid=['NAME','XKRQ'];
 			var th;
+			var rowvalue=new Array();
 			$.each(title, function (index, value){
 				th+="<td>" +value+ "</td>";
 			 });
@@ -709,16 +729,29 @@
 			$("#XZXK_TABLE").append("<tbody id='tbd_sgs'></tbody>");
 			$.get(getJsonUrl(tableDataSourceID)).done(function (data) {	
 				for (var i=0;i<data.rows.length;i++){
+					var tr1='';
+					for(var j=0;j<title.length;j++){
+						var columnID=titleid[j];
+						var value=data.rows[i][columnID];
+						tr1+='<td>'+value+'</td>'
+					}
+					rowvalue[i]='<tr>'+tr1+'</tr>';
+					 //$("#tbd_sgs").append('<tr>'+tr1+'</tr>');			
+				}
+                for (var i=0;i<3;i++){
 					var tr='';
 					for(var j=0;j<title.length;j++){
 						var columnID=titleid[j];
 						var value=data.rows[i][columnID];
 						tr+='<td>'+value+'</td>'
 					}
-					 $("#tbd_sgs").append('<tr>'+tr+'</tr>');			
-				} 
+					$("#tbd_sgs").append('<tr>'+tr+'</tr>');			
+				} 				
+				scrollTable_2('tbd_sgs',data.rows.length,rowvalue,3);
 			}); 
 		}
+		
+		
 		//加载行政处罚表数据
 		function loadTable_XZCF()
 		{
@@ -726,13 +759,23 @@
 			var title=['企业名称','许可日期'];
 			var titleid=['NAME','XKRQ'];
 			var th;
+			var rowvalue=new Array();
 			$.each(title, function (index, value){
 				th+="<td>" +value+ "</td>";
 			 });
 			$("#XZCF_TABLE").append("<thead><tr class=\"title\">" + th + "</tr></thead>");
 			$("#XZCF_TABLE").append("<tbody id='tbd_sgs_xzcf'></tbody>");
 			$.get(getJsonUrl(tableDataSourceID)).done(function (data) {	
-				for (var i=0;i<data.rows.length;i++){
+			    for (var i=0;i<data.rows.length;i++){
+					var tr1='';
+					for(var j=0;j<title.length;j++){
+						var columnID=titleid[j];
+						var value=data.rows[i][columnID];
+						tr1+='<td>'+value+'</td>'
+					}
+					 rowvalue[i]='<tr>'+tr1+'</tr>';		
+				}
+				for (var i=0;i<3;i++){
 					var tr='';
 					for(var j=0;j<title.length;j++){
 						var columnID=titleid[j];
@@ -740,7 +783,8 @@
 						tr+='<td>'+value+'</td>'
 					}
 					 $("#tbd_sgs_xzcf").append('<tr>'+tr+'</tr>');			
-				} 
+				}
+              scrollTable_2('tbd_sgs_xzcf',data.rows.length,rowvalue,3);				
 			}); 
 		}
         
@@ -751,6 +795,7 @@
 			var title=['企业名称','失信次数'];
 			var titleid=['NAME','DEGREE'];
 			var th;
+			var rowvalue=new Array();
 			$.each(title, function (index, value){
 				th+="<td>" +value+ "</td>";
 			 });
@@ -758,6 +803,15 @@
 			$("#QYYJ_TABLE").append("<tbody id='tbd_qyyj'></tbody>");
 			$.get(getJsonUrl(tableDataSourceID)).done(function (data) {	
 				for (var i=0;i<data.rows.length;i++){
+					var tr1='';
+					for(var j=0;j<title.length;j++){
+						var columnID=titleid[j];
+						var value=data.rows[i][columnID];
+						tr1+='<td>'+value+'</td>'
+					}
+					 rowvalue[i]='<tr>'+tr1+'</tr>';			
+				} 
+				for (var i=0;i<5;i++){
 					var tr='';
 					for(var j=0;j<title.length;j++){
 						var columnID=titleid[j];
@@ -765,7 +819,8 @@
 						tr+='<td>'+value+'</td>'
 					}
 					 $("#tbd_qyyj").append('<tr>'+tr+'</tr>');			
-				} 
+				}
+                scrollTable_2('tbd_qyyj',data.rows.length,rowvalue,5);				
 			}); 
 		}
 		//载入本页面单值数据

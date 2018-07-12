@@ -17,9 +17,19 @@ var P2R1 = echarts.init(document.getElementById('P2R1'));
 		//按照统计年度载入数据
 		function loadDataByYear(year){		
 			load_SingleValues(singleValueDataSourceId,year);
-			loadChart_1(year);
+			loadChart_1("HYFW_QXT",year);
 			loadTable_XYSJZL();
 		}
+		//按钮电机事件
+		$("#BGCXL_BTN").click(function(){
+	　　    loadChart_1("HYFW_QXT","2018");
+	    });
+		$("#YSJJHL_BTN").click(function(){
+	　　    loadChart_1("HYFW_QXT_YSJJHL","2018");
+	    });
+		$("#SJZLPM_BTN").click(function(){
+	　　    loadChart_1("HYFW_QXT_SJZLPM","2018");
+	    });
 		//初始化黑洞动画效果
 		function initHeiDong()
 		{
@@ -47,9 +57,9 @@ var P2R1 = echarts.init(document.getElementById('P2R1'));
 				},3450)
 		}
 		//加载曲线图数据
-		function loadChart_1(year)
+		function loadChart_1(chartID,year)
 		{
-		  var chartID="HYFW_QXT";
+		 // var chartID="HYFW_QXT";
 				$.get(getChartJsonUrl(chartID,year)).done(function (data) {		
 					var Labels=new Array(); //存放标签的数组
 					var Values=new Array();//存放数据对象的数组
@@ -373,6 +383,7 @@ var P2R1 = echarts.init(document.getElementById('P2R1'));
 			var title=['接入单位','累计报送量(条)','月新增量(条)','更新频率','质量问题数(个)','共享方式','数据类型','预警提示'];
 			var titleid=['NAME','LJBSL','YXZL','GXPL','ZLWTS','GXFS','SJLX','YJTS'];
 			var th;
+			var rowvalue=new Array();
 			$.each(title, function (index, value){
 				th+="<td>" +value+ "</td>";
 			 });
@@ -380,6 +391,15 @@ var P2R1 = echarts.init(document.getElementById('P2R1'));
 			$("#XYSJZL_TABLE").append("<tbody id='tbd_xysjzl'></tbody>");
 			$.get(getJsonUrl(tableDataSourceID)).done(function (data) {	
 				for (var i=0;i<data.rows.length;i++){
+					var tr1='';
+					for(var j=0;j<title.length;j++){
+						var columnID=titleid[j];
+						var value=data.rows[i][columnID];
+						tr1+='<td>'+value+'</td>'
+					}
+					 rowvalue[i]='<tr class='+"'text1'"+'>'+tr1+'</tr>';			
+				} 
+				for (var i=0;i<5;i++){
 					var tr='';
 					for(var j=0;j<title.length;j++){
 						var columnID=titleid[j];
@@ -387,27 +407,11 @@ var P2R1 = echarts.init(document.getElementById('P2R1'));
 						tr+='<td>'+value+'</td>'
 					}
 					 $("#tbd_xysjzl").append('<tr class='+"'text1'"+'>'+tr+'</tr>');			
-				} 
-				//scrollup();
-				scrollTable('tbd_xysjzl');
+				}
+				scrollTable_2('tbd_xysjzl',data.rows.length,rowvalue,5);
 			});
 			
 		}
-function scrollup(){
-var speed = 50;
-var i=0;
-demo2.innerHTML = demo1.innerHTML;
-function Marquee() {
-	if (demo.scrollTop >= 160) {
-		i=0;
-		demo.scrollTop = 0;
-	} else {
-		i++;
-		demo.scrollTop=i;
-	}
-}
-var MyMar = setInterval(Marquee, speed);
-	
-}
+
 	
 	

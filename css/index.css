@@ -481,13 +481,46 @@ span{
     margin-left:2.5px;
     background: radial-gradient(#0f2a55, #265eb7);
 }
-.leftcs1{
+.leftcs_image1{
     margin-top:13px;
     margin-left:15px;
     height:60%;
     width:2rem;
     border:1px solid rgba(6, 104, 186, 0.5);
-    background-image: url("../images/left3.png");
+    background-image: url("../images/zyml.png");
+    background-size:2rem 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.leftcs_image2{
+    margin-top:13px;
+    margin-left:15px;
+    height:60%;
+    width:2rem;
+    border:1px solid rgba(6, 104, 186, 0.5);
+    background-image: url("../images/zyxy.png");
+    background-size:2rem 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.leftcs_image3{
+    margin-top:13px;
+    margin-left:15px;
+    height:60%;
+    width:2rem;
+    border:1px solid rgba(6, 104, 186, 0.5);
+    background-image: url("../images/fr.png");
+    background-size:2rem 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.leftcs_image4{
+    margin-top:13px;
+    margin-left:15px;
+    height:60%;
+    width:2rem;
+    border:1px solid rgba(6, 104, 186, 0.5);
+    background-image: url("../images/zrr.png");
     background-size:2rem 100%;
     background-repeat: no-repeat;
     display: inline-block;
@@ -579,10 +612,21 @@ span{
     width:0.5rem;
     float:left;
     font-size:0.35rem;
-    margin-left:9px;
+    margin-left:5px;
     margin-top:-8px;
     color:#3cbea9;
 }
+.cs10{
+    display: inline-block;
+    height:55%;
+    width:0.5rem;
+    float:left;
+    font-size:0.35rem;
+	margin-left:13px;
+    margin-top:-8px;
+    color:#3cbea9;
+}
+
 
 #P1L1{
     display: inline-block;
@@ -609,7 +653,6 @@ span{
     width:6rem;
     float:left;
     font-size:0.4rem;
-    text-align:center;
     border:1px solid rgba(6, 104, 186, 0.5);
     border-top-color: black;
     border-left-color: black;
@@ -620,14 +663,13 @@ span{
     width:6rem;
     float:left;
     font-size:10px;
-    text-align:center;
 }
 .leftc1{
     display: inline-block;
     height:40%;
     width:1.6rem;
     margin-top:10px;
-    margin-left:15px;
+    margin-left:45px;
     font-size:0.4rem;
     text-align:left;
     color:#40d1b7;
@@ -638,12 +680,22 @@ span{
 .leftc2{
     display: inline-block;
     height:40%;
+    margin-top:10px;
+    font-size:0.4rem;
+    color:#40d1b7;
+    margin-left:10px;
+    text-align:left;
+    word-wrap:break-word;
+    white-space:normal;
+}
+.leftc6{
+    display: inline-block;
+    height:40%;
     width:0.8rem;
     margin-top:10px;
     font-size:0.4rem;
-    text-align:left;
     color:#40d1b7;
-    margin-left:5px;
+    text-align: left;
     word-wrap:break-word;
     white-space:normal;
 }
@@ -913,7 +965,7 @@ span{
     height:100%;
     width:9rem;
     margin-top: -510px;
-    margin-left:280px;
+    margin-left:300px;
     background-image: url("../images/map.png");
     background-size:100% 100%;
     background-repeat: no-repeat;

@@ -79,6 +79,7 @@ var chartP5L1 = echarts.init(document.getElementById('chartP5L1'));
 		var title=['姓名','资格证号','资格证书状态'];
 		var titleid=['NAME','ZGZH','ZGZSZT'];
 		var th;
+		var rowvalue=new Array();
 	    $.each(title, function (index, value){
             th+="<th>" +value+ "</th>";
 		 });
@@ -86,6 +87,15 @@ var chartP5L1 = echarts.init(document.getElementById('chartP5L1'));
         $("#myTb").append("<tbody id='tbd'></tbody>");
 	    $.get(getJsonUrl(tableDataSourceID)).done(function (data) {	
 			for (var i=0;i<data.rows.length;i++){
+			    var tr1='';
+				for(var j=0;j<title.length;j++){
+				    var columnID=titleid[j];
+					var value=data.rows[i][columnID];
+					tr1+='<td>'+value+'</td>'
+				}
+				 rowvalue[i]='<tr>'+tr1+'</tr>';	
+			}
+			for (var i=0;i<10;i++){
 			    var tr='';
 				for(var j=0;j<title.length;j++){
 				    var columnID=titleid[j];
@@ -94,7 +104,7 @@ var chartP5L1 = echarts.init(document.getElementById('chartP5L1'));
 				}
 				 $("#tbd").append('<tr>'+tr+'</tr>');			
 			}
-            scrollTable('tbd');			
+            scrollTable_2('tbd',data.rows.length,rowvalue,10);				
 		}); 
 	}
 	
@@ -212,6 +222,10 @@ var chartP5L1 = echarts.init(document.getElementById('chartP5L1'));
 	function initChart_SXRK_BL()
 	{
 		  chartP5B2.setOption({
+			  tooltip: {
+		            trigger: 'item',
+		            
+	            },
               legend: {
                   orient: 'vertical',
                   x: 'right',
@@ -277,6 +291,10 @@ var chartP5L1 = echarts.init(document.getElementById('chartP5L1'));
 	function initChart_SXRK_BR()
 	{
 		 chartP5B3.setOption({
+			 tooltip: {
+		            trigger: 'item',
+		            
+	            },
              legend: {
                  orient: 'vertical',
                  x: 'right',

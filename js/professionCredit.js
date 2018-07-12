@@ -141,6 +141,10 @@ setHeight();
         function init_SCJD()
 		{
 			chartP3L1.setOption({
+				tooltip: {
+		            trigger: 'item',
+		            
+	            },
                 legend: {
                     orient: 'vertical',
                     x: '80%',
@@ -305,6 +309,10 @@ setHeight();
 		function init_SPQY()
 		{
 			chartP3L3.setOption({
+				tooltip: {
+		            trigger: 'item',
+		            
+	            },
 				legend: {
 					orient: 'vertical',
 					x: 'right',
@@ -318,7 +326,7 @@ setHeight();
 				color: ['rgb(195,52,48)','rgb(213,131,100)','rgb(96,161,169)','rgb(46,68,84)'],
 
 				series: [{
-					name:'',
+					
 					type:'pie',
 					center: ['41%', '50%'],
 					label: {
@@ -366,6 +374,10 @@ setHeight();
 		function init_YPQY()
 		{
 			chartP3L4.setOption({
+				tooltip: {
+		            trigger: 'item',
+		            
+	            },
 				legend: {
 					orient: 'vertical',
 					x: 'right',

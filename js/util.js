@@ -93,3 +93,39 @@ function scrollTable(tablename){
         }   
 	
 }
+       //滚动表格2
+		function scrollTable_2(tablename,num,value,index){
+			var w_index=index;
+			var $this = $('#'+tablename); 
+			var scrollTimer; 
+			$this.hover(function() { 
+			clearInterval(scrollTimer); 
+			}, function() { 
+			scrollTimer = setInterval(function() { 
+			scrollup(); 
+			}, 2000); 
+			}).trigger("mouseleave"); 
+			
+
+			//从下往上滚
+		        function scrollup(){
+		            var table = document.getElementById(tablename);//$("#table1 > tbody").get(0)
+		            var row = table.firstChild;
+					if(w_index<num)
+					{
+						table.removeChild(row);
+						$("#"+tablename).append(value[w_index]);
+                        w_index=w_index+1;						
+					}
+					else
+					{
+						w_index=0;
+						table.removeChild(row);
+						$("#"+tablename).append(value[w_index]);
+                        w_index=w_index+1;
+					}
+		            //table.appendChild(row);
+					
+		        }   
+			
+		}

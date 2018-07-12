@@ -10,9 +10,17 @@
 	
 	//载入本页面初始数据
 	$(document).ready(function(){
+		toggleFullScreen();
 		loadDataByYear('2018');
 		}
 	);
+	//按照统计年度载入数据
+		function loadDataByYear(year){		
+			load_SingleValues(singleValueDataSourceId,year);
+			loadChart_1("HYFW_QXT",year);
+			loadTable_XYSJZL();
+		}
+		
 	
     //选择统计年度
 	function selectYear(){
@@ -32,8 +40,15 @@
 		load_YYCL_Values(year);
 		load_QYXYPJ_Values(year);
 		load_XYSJZL_ZLFX_Values(year);
-		load_LHCJ_Values(year);//联合惩戒
+		load_LHCJ_Values("ZTGK_LHCJ",year);//联合惩戒
 	}
+	//按钮电机事件
+		$("#SXQY_BTN").click(function(){
+	　　    load_LHCJ_Values("ZTGK_LHCJ","2018");
+	    });
+		$("#SXGR_BTN").click(function(){
+	　　    load_LHCJ_Values("ZTGK_LHCJ_SXGR","2018");
+	    });
 	
 
 	
@@ -796,8 +811,8 @@
 		
 	}
 	//载入数据，生成联合惩戒图表柱状图
-	function load_LHCJ_Values(year){
-		var chartID="ZTGK_LHCJ";	
+	function load_LHCJ_Values(chartID,year){
+		//var chartID="ZTGK_LHCJ";	
 		var url=getChartJsonUrl(chartID,year);
 		$.get(url).done(function (data) {		
 		var Labels=new Array(); //存放标签的数组
@@ -950,3 +965,25 @@
             this.className = 'active';
             permission.className = '';
         };
+		
+		
+     function toggleFullScreen() {
+	if (!document.fullscreenElement && // alternative standard method
+		!document.mozFullScreenElement && !document.webkitFullscreenElement) {// current working methods
+		if (document.documentElement.requestFullscreen) {
+			document.documentElement.requestFullscreen();
+		} else if (document.documentElement.mozRequestFullScreen) {
+			document.documentElement.mozRequestFullScreen();
+		} else if (document.documentElement.webkitRequestFullscreen) {
+			document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+		}
+	} else {
+		if (document.cancelFullScreen) {
+			document.cancelFullScreen();
+		} else if (document.mozCancelFullScreen) {
+			document.mozCancelFullScreen();
+		} else if (document.webkitCancelFullScreen) {
+			document.webkitCancelFullScreen();
+		}
+	}
+}
