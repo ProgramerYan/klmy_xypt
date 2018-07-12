@@ -231,13 +231,13 @@ li.startM {
 }
 .left-center-text1{
     display: block;
-    font-size: 0.6rem;
+    font-size: 0.4rem;
     margin-top: 8px;
     color: #769ebd;
 }
 .left-center-text2{
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.4rem;
     margin-top: -2px;
     border:1px solid white;
     border-left: none;
@@ -249,15 +249,15 @@ li.startM {
 }
 .left-center-1 .title-text {
     color: #7a8e9f;
-    font-size: .55rem;
+    font-size: .4rem;
 }
 .left-center-1 .title-text-1 {
     color: white;
-    font-size: .55rem;
+    font-size: .4rem;
 }
 .left-center-1 .num-text {
     color: white;
-    font-size: .7rem;
+    font-size: .4rem;
 }
 .left-center-1 .num-right{
     position: absolute;
